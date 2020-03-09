@@ -1,0 +1,7 @@
+name = "my-buycoins-server"
+type = "webpack"
+account_id = "040afc77d0acb6abaf905b8f1856aa52"
+workers_dev = true
+route = ""
+zone_id = ""
+webpack_config = "webpack.config.js"
