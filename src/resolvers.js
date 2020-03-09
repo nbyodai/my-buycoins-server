@@ -1,7 +1,15 @@
 module.exports = {
   Query: {
-    get: async (_source, { id }, { dataSources }) => {
-      return `hello world ${id}`;
+    calculatePrice: async (
+      _source,
+      { type, margin, exchangeRate },
+      { dataSources }
+    ) => {
+      return dataSources.coindeskAPI.getCalculatedPrice(
+        type,
+        margin,
+        exchangeRate
+      );
     }
   }
 };

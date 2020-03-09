@@ -1,7 +1,17 @@
-const { gql } = require('apollo-server-cloudflare')
+const { gql } = require("apollo-server-cloudflare");
 
 module.exports = gql`
-  type Query {
-    get(id: ID!): String
+  type Response {
+    amount: Float
+    comment: String
   }
-`
+
+  enum Topic {
+    buy
+    sell
+  }
+
+  type Query {
+    calculatePrice(type: Topic!, margin: Float!, exchangeRate: Float!): Response
+  }
+`;
