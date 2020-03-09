@@ -5,9 +5,12 @@ const {
 
 const KVCache = require("../kv-cache");
 const resolvers = require("../resolvers");
+const CoindeskAPI = require('../datasources/coindeskapi')
 const typeDefs = require("../schema");
 
-const dataSources = () => ({});
+const dataSources = () => ({
+  coindeskAPI: new CoindeskAPI(),
+});
 
 const kvCache = { cache: new KVCache() };
 
