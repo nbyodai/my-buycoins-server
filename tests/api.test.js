@@ -1,7 +1,7 @@
 const CoindeskAPI = require("../src/datasources/coindeskapi");
 const mocks = require("./mocks");
 
-describe.only("BuyCoins API", () => {
+describe("BuyCoins API", () => {
   it("should correctly return the resolved computed value", async () => {
     const coindeskAPI = new CoindeskAPI();
     const type = "buy";
@@ -18,9 +18,9 @@ describe.only("BuyCoins API", () => {
       margin,
       exchangeRate
     );
-    const expected = { nairaValue: 3041181.477009 };
+    const expected = { amount: "3041181.48" };
 
     expect(coindeskAPI.get).toHaveBeenCalled();
-    expect(expected).toEqual(actual);
+    expect(actual).toEqual(expected);
   });
 });

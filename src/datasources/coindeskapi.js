@@ -10,7 +10,7 @@ class CoindeskAPI extends RESTDataSource {
   async getCalculatedPrice(type, margin, exchangeRate) {
     try {
       const response = await this.get("ngn.json");
-      const jsonResponse = JSON.parse(response)
+      const jsonResponse = JSON.parse(response);
 
       const currentPrice = jsonResponse.bpi.USD.rate_float;
       const mybit = new MyBit(currentPrice);
@@ -26,8 +26,7 @@ class CoindeskAPI extends RESTDataSource {
       }
 
       return {
-        amount: MyBit.convertToNaira(computedValue, exchangeRate),
-        comment: ''
+        amount: MyBit.convertToNaira(computedValue, exchangeRate)
       };
     } catch (error) {
       console.log(error);

@@ -1,4 +1,5 @@
 const CurrencySet = ["USD", "NGN"];
+const Big = require("big.js");
 
 class MyBit {
   constructor(price, currency = "USD") {
@@ -8,20 +9,23 @@ class MyBit {
     if (currency && !CurrencySet.includes(currency.toUpperCase())) {
       throw new Error(`Currency must be one of ${CurrencySet.join(" ")}`);
     }
-    this.price = price;
+    this.price = new Big(price);
     this.currency = currency.toUpperCase();
   }
 
   add(margin) {
-    return this.price * (1 + margin / 100);
+    return this.price.times(Big(1).plus(Big(margin).div(100)));
   }
 
   subtract(margin) {
-    return this.price * (1 - margin / 100);
+    return this.price.times(Big(1).minus(Big(margin).div(100)));
   }
 
   static convertToNaira(price, exchangeRate) {
-    return price * exchangeRate;
+    return Big(price)
+      .times(exchangeRate)
+      .toFixed(2)
+      .toString()
   }
 }
 

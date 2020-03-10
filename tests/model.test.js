@@ -15,20 +15,22 @@ describe("Model tests", () => {
 
   it("should be initialized correctly with just price, default USD currency", () => {
     const mybit = new MyBit(100);
-    expect(mybit.price).toEqual(100);
     expect(mybit.currency).toEqual("USD");
+    expect(mybit.price.toString()).toEqual("100");
   });
 
   it("should be initialized correctly with just price, and NGN", () => {
     const mybit = new MyBit(100, "ngn");
     expect(mybit.currency).toEqual("NGN");
   });
+
   it("should be subtract for sell", () => {
     const currentPrice = 100;
     const margin = 0.2;
     const mybit = new MyBit(currentPrice);
 
-    expect(mybit.subtract(margin)).toEqual(100 * (1 - margin / 100));
+    const actual = mybit.subtract(margin);
+    expect(actual.toString()).toEqual("99.8");
   });
 
   it("should be add for buy", () => {
@@ -36,14 +38,15 @@ describe("Model tests", () => {
     const margin = 0.2;
     const mybit = new MyBit(currentPrice);
 
-    expect(mybit.add(margin)).toEqual(100 * (1 + margin / 100));
+    const actual = mybit.add(margin);
+    expect(actual.toString()).toEqual("100.2");
   });
 
   it("should convert amount to naira given exchangeRate", () => {
     const price = 100; // $
-    const exchangeRate = 365.0;
-    const converted = MyBit.convertToNaira(price, exchangeRate);
+    const exchangeRate = 365.00;
 
-    expect(converted).toEqual(price * exchangeRate);
+    const actual = MyBit.convertToNaira(price, exchangeRate);
+    expect(actual.toString()).toEqual("36500.00");
   });
 });
