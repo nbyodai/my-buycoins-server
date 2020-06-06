@@ -6,7 +6,7 @@
   "author": "Chibuzor Obiora <cobiora@getcarbon.co>",
   "dependencies": {
     "apollo-datasource-rest": "^0.3.2",
-    "apollo-server-cloudflare": "^2.4.8",
+    "apollo-server-cloudflare": "^2.14.2",
     "big.js": "^5.2.2",
     "graphql": "^14.2.1"
   },
